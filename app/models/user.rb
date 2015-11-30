@@ -7,6 +7,7 @@ class User < ActiveRecord::Base
   has_many :userinfos
   has_many :educations
   has_many :experiences
+  has_many :joblizeds
   
 
   has_attached_file :avatar, :styles => { :medium => "400x400>", :thumb => "100x100>" }, 

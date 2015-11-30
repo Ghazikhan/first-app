@@ -1,10 +1,12 @@
 class CitiesController < ApplicationController
   before_action :set_city, only: [:show, :edit, :update, :destroy]
+  before_filter :admin
 
   # GET /cities
   # GET /cities.json
   def index
     @cities = City.all
+    @user = current_user
   end
 
   # GET /cities/1

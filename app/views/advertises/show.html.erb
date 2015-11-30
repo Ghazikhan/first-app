@@ -1,0 +1,19 @@
+<p id="notice"><%= notice %></p>
+
+<%= render 'shared/job_list' %>
+<p>
+  <strong>Download Newspaper Cutting</strong><br>
+  <%= @advertise.picture %>
+</p>
+<% if logged_in_admin? %>
+<button class="btn btn-primary" type="button" data-toggle="collapse" 
+				data-target="#addEducation" aria-expanded="false" aria-controls="collapseExample">
+	Add Jobs
+</button>
+<br><br>
+<div class="collapse" id="addEducation">
+	<div class="well">
+		<%= render 'jobs/form' %>
+	</div>
+</div>
+<% end %>

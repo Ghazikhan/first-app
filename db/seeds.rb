@@ -5,3 +5,10 @@
 #
 #   cities = City.create([{ name: 'Chicago' }, { name: 'Copenhagen' }])
 #   Mayor.create(name: 'Emanuel', city: cities.first)
+
+City.delete_all
+open("cities.txt").read.each_line do |city|
+  name, code = city.chomp.split(",")
+  City.create!(:name => name)
+  end
+end

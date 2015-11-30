@@ -1,5 +1,6 @@
 class CitiesController < ApplicationController
   before_action :set_city, only: [:show, :edit, :update, :destroy]
+  before_filter :admin
 
   # GET /cities
   # GET /cities.json
@@ -73,5 +74,13 @@ class CitiesController < ApplicationController
     # Never trust parameters from the scary internet, only allow the white list through.
     def city_params
       params.require(:city).permit(:name)
+    end
+    
+    def admin
+    	@user = current_user
+     unless current_user && User.find_by(email: "ghazi545@gmail.com") == current_user
+      flash[:alert] = 'Access denied..! Please login as admin.'
+      redirect_to @user
+     end
     end
 end

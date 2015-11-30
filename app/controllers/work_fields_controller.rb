@@ -1,31 +1,24 @@
 class WorkFieldsController < ApplicationController
   before_action :set_work_field, only: [:show, :edit, :update, :destroy]
+  before_filter :admin
 
-  # GET /work_fields
-  # GET /work_fields.json
   def index
     @work_fields = WorkField.all
     @user = current_user
   end
 
-  # GET /work_fields/1
-  # GET /work_fields/1.json
   def show
   	@user = current_user
   end
 
-  # GET /work_fields/new
   def new
     @work_field = WorkField.new
     @user = current_user
   end
 
-  # GET /work_fields/1/edit
   def edit
   end
 
-  # POST /work_fields
-  # POST /work_fields.json
   def create
     @work_field = WorkField.new(work_field_params)
 
@@ -40,8 +33,6 @@ class WorkFieldsController < ApplicationController
     end
   end
 
-  # PATCH/PUT /work_fields/1
-  # PATCH/PUT /work_fields/1.json
   def update
     respond_to do |format|
       if @work_field.update(work_field_params)
@@ -54,8 +45,6 @@ class WorkFieldsController < ApplicationController
     end
   end
 
-  # DELETE /work_fields/1
-  # DELETE /work_fields/1.json
   def destroy
     @work_field.destroy
     respond_to do |format|
@@ -65,13 +54,19 @@ class WorkFieldsController < ApplicationController
   end
 
   private
-    # Use callbacks to share common setup or constraints between actions.
     def set_work_field
       @work_field = WorkField.find(params[:id])
     end
 
-    # Never trust parameters from the scary internet, only allow the white list through.
     def work_field_params
       params.require(:work_field).permit(:field_name)
+    end
+    
+    def admin
+    	@user = current_user
+     unless current_user && User.find_by(email: "ghazi545@gmail.com") == current_user
+      flash[:alert] = 'Access denied..! Please login as admin.'
+      redirect_to @user
+     end
     end
 end

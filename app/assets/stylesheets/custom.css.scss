@@ -119,3 +119,13 @@ select focus {
 	margin-top: 5px;
 }
 
+.select select {
+	width: 49.5%;
+	margin-bottom: 15px;
+	border: 1px solid #BDBDBD;
+	border-radius: 4px;
+	padding: 6px;
+	background-color: white;
+	@include box_sizing;
+}
+

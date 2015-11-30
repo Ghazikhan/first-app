@@ -1,0 +1,12 @@
+<%= form_for([@advertise, @advertise.jobs.build]) do |f| %>
+	<%= f.text_area :description, size: "5x5", class: "form-control", placeholder: "Job Description" %>
+	<div class="select">
+		<%= f.collection_select :work_field_id, WorkField.all, :id, :field_name, prompt: "--Select Job Title--" %>
+		<%= f.collection_select :organization_id, Organization.all, :id, :name, prompt: "--Select Organization--" %>
+	</div>
+	<div class="select">
+		<%= f.collection_select :degre_id, Degre.all, :id, :name_with_type, prompt: "--Select Qualification--" %>
+		<%= f.collection_select :city_id, City.all, :id, :name, prompt: "--Select City--" %>
+	</div>
+	<%= f.submit "Submit", class: "btn btn-primary" %>
+<% end %>

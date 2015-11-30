@@ -1,28 +1,24 @@
 class InstitutesController < ApplicationController
   before_action :set_institute, only: [:show, :edit, :update, :destroy]
+  before_filter :admin
 
-  # GET /institutes
-  # GET /institutes.json
   def index
     @institutes = Institute.all
+    @user = current_user
   end
 
-  # GET /institutes/1
-  # GET /institutes/1.json
   def show
+  @user = current_user
   end
 
-  # GET /institutes/new
   def new
     @institute = Institute.new
+    @user = current_user
   end
 
-  # GET /institutes/1/edit
   def edit
   end
 
-  # POST /institutes
-  # POST /institutes.json
   def create
     @institute = Institute.new(institute_params)
 
@@ -37,8 +33,6 @@ class InstitutesController < ApplicationController
     end
   end
 
-  # PATCH/PUT /institutes/1
-  # PATCH/PUT /institutes/1.json
   def update
     respond_to do |format|
       if @institute.update(institute_params)
@@ -51,8 +45,6 @@ class InstitutesController < ApplicationController
     end
   end
 
-  # DELETE /institutes/1
-  # DELETE /institutes/1.json
   def destroy
     @institute.destroy
     respond_to do |format|
@@ -62,13 +54,19 @@ class InstitutesController < ApplicationController
   end
 
   private
-    # Use callbacks to share common setup or constraints between actions.
     def set_institute
       @institute = Institute.find(params[:id])
     end
 
-    # Never trust parameters from the scary internet, only allow the white list through.
     def institute_params
       params.require(:institute).permit(:name, :city_id)
+    end
+    
+    def admin
+    	@user = current_user
+     unless current_user && User.find_by(email: "ghazi545@gmail.com") == current_user
+      flash[:alert] = 'Access denied..! Please login as admin.'
+      redirect_to @user
+     end
     end
 end

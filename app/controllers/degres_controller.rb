@@ -1,31 +1,24 @@
 class DegresController < ApplicationController
   before_action :set_degre, only: [:show, :edit, :update, :destroy]
+  before_filter :admin
 
-  # GET /degres
-  # GET /degres.json
   def index
     @degres = Degre.all
     @user = current_user
   end
 
-  # GET /degres/1
-  # GET /degres/1.json
   def show
   	@user = current_user
   end
 
-  # GET /degres/new
   def new
     @degre = Degre.new
     @user = current_user
   end
 
-  # GET /degres/1/edit
   def edit
   end
 
-  # POST /degres
-  # POST /degres.json
   def create
     @degre = Degre.new(degre_params)
 
@@ -40,8 +33,6 @@ class DegresController < ApplicationController
     end
   end
 
-  # PATCH/PUT /degres/1
-  # PATCH/PUT /degres/1.json
   def update
     respond_to do |format|
       if @degre.update(degre_params)
@@ -54,8 +45,6 @@ class DegresController < ApplicationController
     end
   end
 
-  # DELETE /degres/1
-  # DELETE /degres/1.json
   def destroy
     @degre.destroy
     respond_to do |format|
@@ -65,13 +54,19 @@ class DegresController < ApplicationController
   end
 
   private
-    # Use callbacks to share common setup or constraints between actions.
     def set_degre
       @degre = Degre.find(params[:id])
     end
 
-    # Never trust parameters from the scary internet, only allow the white list through.
     def degre_params
       params.require(:degre).permit(:name, :drege_type)
+    end
+    
+    def admin
+    	@user = current_user
+     unless current_user && User.find_by(email: "ghazi545@gmail.com") == current_user
+      flash[:alert] = 'Access denied..! Please login as admin.'
+      redirect_to @user
+     end
     end
 end

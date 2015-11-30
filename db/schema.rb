@@ -11,10 +11,26 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20151130083219) do
+ActiveRecord::Schema.define(version: 20151130162626) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "advertises", force: :cascade do |t|
+    t.string   "picture"
+    t.integer  "user_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  add_index "advertises", ["user_id"], name: "index_advertises_on_user_id", using: :btree
+
+  create_table "advertisments", force: :cascade do |t|
+    t.string   "title"
+    t.string   "image"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
 
   create_table "cities", force: :cascade do |t|
     t.string   "name"
@@ -66,6 +82,46 @@ ActiveRecord::Schema.define(version: 20151130083219) do
 
   add_index "institutes", ["city_id"], name: "index_institutes_on_city_id", using: :btree
 
+  create_table "joblizeds", force: :cascade do |t|
+    t.string   "title"
+    t.integer  "user_id"
+    t.integer  "work_field_id"
+    t.integer  "organization_id"
+    t.integer  "degre_id"
+    t.integer  "city_id"
+    t.datetime "created_at",      null: false
+    t.datetime "updated_at",      null: false
+  end
+
+  add_index "joblizeds", ["city_id"], name: "index_joblizeds_on_city_id", using: :btree
+  add_index "joblizeds", ["degre_id"], name: "index_joblizeds_on_degre_id", using: :btree
+  add_index "joblizeds", ["organization_id"], name: "index_joblizeds_on_organization_id", using: :btree
+  add_index "joblizeds", ["user_id"], name: "index_joblizeds_on_user_id", using: :btree
+  add_index "joblizeds", ["work_field_id"], name: "index_joblizeds_on_work_field_id", using: :btree
+
+  create_table "jobs", force: :cascade do |t|
+    t.text     "description"
+    t.integer  "advertise_id"
+    t.integer  "work_field_id"
+    t.integer  "organization_id"
+    t.integer  "degre_id"
+    t.integer  "city_id"
+    t.datetime "created_at",      null: false
+    t.datetime "updated_at",      null: false
+  end
+
+  add_index "jobs", ["advertise_id"], name: "index_jobs_on_advertise_id", using: :btree
+  add_index "jobs", ["city_id"], name: "index_jobs_on_city_id", using: :btree
+  add_index "jobs", ["degre_id"], name: "index_jobs_on_degre_id", using: :btree
+  add_index "jobs", ["organization_id"], name: "index_jobs_on_organization_id", using: :btree
+  add_index "jobs", ["work_field_id"], name: "index_jobs_on_work_field_id", using: :btree
+
+  create_table "organizations", force: :cascade do |t|
+    t.string   "name"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
   create_table "userinfos", force: :cascade do |t|
     t.integer  "user_id"
     t.date     "date_of_birth"
@@ -112,11 +168,22 @@ ActiveRecord::Schema.define(version: 20151130083219) do
     t.datetime "updated_at", null: false
   end
 
+  add_foreign_key "advertises", "users"
   add_foreign_key "educations", "degres"
   add_foreign_key "educations", "institutes"
   add_foreign_key "educations", "users"
   add_foreign_key "experiences", "users"
   add_foreign_key "experiences", "work_fields"
   add_foreign_key "institutes", "cities"
+  add_foreign_key "joblizeds", "cities"
+  add_foreign_key "joblizeds", "degres"
+  add_foreign_key "joblizeds", "organizations"
+  add_foreign_key "joblizeds", "users"
+  add_foreign_key "joblizeds", "work_fields"
+  add_foreign_key "jobs", "advertises"
+  add_foreign_key "jobs", "cities"
+  add_foreign_key "jobs", "degres"
+  add_foreign_key "jobs", "organizations"
+  add_foreign_key "jobs", "work_fields"
   add_foreign_key "userinfos", "users"
 end
