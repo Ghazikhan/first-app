@@ -12,6 +12,5 @@ class UsersController < ApplicationController
   	@userinfo = Userinfo.new
   	@education = Education.new
   	@work_field = WorkField.new
-  	@work_field = WorkField.find(params[:id])
   end
 end

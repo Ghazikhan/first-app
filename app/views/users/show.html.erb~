@@ -5,18 +5,42 @@
 <% if notice %>
 	<p class="alert alert-success"><%= notice %></p> 
 <% end %>
-
-<p><strong>Name:</strong> <%= @user.first_name %> <%= @user.last_name %></p>
-<p><strong>Email:</strong>	<%= mail_to @user.email %></p>
-
+<div class="row">
+  <div class="col-md-8">
+		<div class="panel panel-default">
+			<div class="panel-body">
+				<p><strong>Name:</strong> <%= @user.first_name %> <%= @user.last_name %></p>
+				<p><strong>Email:</strong>	<%= mail_to @user.email %></p>
+					<%= render 'shared/userinfo' %>
+			</div>
+		</div>
+  </div>
+  <div class="col-md-4">
+		<div class="panel panel-default">
+			<div class="panel-body">
+				<%= avatar3(@user) %>
+			</div>
+		</div>
+			<button class="btn btn-primary" type="button" data-toggle="collapse" 
+							data-target="#addAvatar" aria-expanded="false" aria-controls="collapseExample">
+				Upload Photo
+			</button>
+  </div>
+</div>
+			<div class="collapse" id="addAvatar">
+				<div class="well">
+					<%= render 'devise/registrations/edit' %>
+				</div>
+			</div>
 <% if @user.userinfos.exists? %>
-	<%= render 'shared/userinfo' %>
+
 	<% if @user.educations.exists? %>
 		<%= render 'shared/education' %>
 	<% end %>
-		<a class="btn btn-primary" role="button" data-toggle="collapse" href="#addEducation" aria-expanded="false" aria-controls="collapseExample">
+		<button class="btn btn-primary" type="button" data-toggle="collapse" 
+						data-target="#addEducation" aria-expanded="false" aria-controls="collapseExample">
 			Add Education
-		</a>
+		</button>
 		<br><br>
 		<div class="collapse" id="addEducation">
 			<div class="well">
@@ -26,7 +50,8 @@
 	<% if @user.experiences.exists? %>
 		<%= render 'shared/experience' %>
 	<% end %>
-		<button class="btn btn-primary" type="button" data-toggle="collapse" data-target="#addExperience" aria-expanded="false" aria-controls="collapseExample">
+		<button class="btn btn-primary" type="button" data-toggle="collapse" 
+						data-target="#addExperience" aria-expanded="false" aria-controls="collapseExample">
 			Add Experience
 		</button>
 		<br><br>

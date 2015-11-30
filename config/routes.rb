@@ -3,7 +3,8 @@ Rails.application.routes.draw do
   root 	'pages#home'
  	get 	'pages/about'
   get 	'pages/contact'
-  devise_for :users
+  
+  devise_for :users, :controllers => { :registrations => :registrations }
   
   resources :work_fields
   resources :degres

@@ -1,7 +1,7 @@
 <% @user.userinfos.each do |info| %>
 	<p>
 		<strong>Date of birth:</strong>
-		<%= info.date_of_birth %>
+		<%= info.date_of_birth.strftime("%B %d, %Y") %>
 	</p>
 
 	<p>
