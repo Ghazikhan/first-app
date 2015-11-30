@@ -1,0 +1,41 @@
+<br>
+<% if alert %>
+	<p class="alert alert-danger"><%= alert %></p>
+<% end %>
+<% if notice %>
+	<p class="alert alert-success"><%= notice %></p> 
+<% end %>
+
+<p><strong>Name:</strong> <%= @user.first_name %> <%= @user.last_name %></p>
+<p><strong>Email:</strong>	<%= mail_to @user.email %></p>
+
+<% if @user.userinfos.exists? %>
+	<%= render 'shared/userinfo' %>
+	<% if @user.educations.exists? %>
+		<%= render 'shared/education' %>
+	<% end %>
+		<a class="btn btn-primary" role="button" data-toggle="collapse" href="#addEducation" aria-expanded="false" aria-controls="collapseExample">
+			Add Education
+		</a>
+		<br><br>
+		<div class="collapse" id="addEducation">
+			<div class="well">
+				<%= render 'educations/form' %>
+			</div>
+		</div>
+	<% if @user.experiences.exists? %>
+		<%= render 'shared/experience' %>
+	<% end %>
+		<button class="btn btn-primary" type="button" data-toggle="collapse" data-target="#addExperience" aria-expanded="false" aria-controls="collapseExample">
+			Add Experience
+		</button>
+		<br><br>
+		<div class="collapse" id="addExperience">
+			<div class="well">
+				<%= render 'experiences/form' %>
+			</div>
+		</div>
+<% else %>
+	<%= render 'userinfos/form' %>
+<% end %>
+

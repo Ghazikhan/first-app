@@ -1,0 +1,23 @@
+<% @user.userinfos.each do |info| %>
+	<p>
+		<strong>Date of birth:</strong>
+		<%= info.date_of_birth %>
+	</p>
+
+	<p>
+		<strong>Gender:</strong>
+		<%= info.gender %>
+	</p>
+
+	<p>
+		<strong>Mobile:</strong>
+		<%= info.mobile %>
+	</p>
+
+	<p>
+		<strong>Address:</strong>
+		<%= info.address %>
+	</p>
+	
+<% end %>
+<hr>

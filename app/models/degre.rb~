@@ -1,0 +1,7 @@
+class Degre < ActiveRecord::Base
+	has_many :educations
+	
+  def degree
+   "#{name} #{drege_type}"
+  end
+end

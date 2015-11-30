@@ -1,0 +1,2 @@
+class WorkField < ActiveRecord::Base
+end
