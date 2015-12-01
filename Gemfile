@@ -4,6 +4,7 @@ source 'https://rubygems.org'
 gem 'devise'
 gem 'bootstrap-sass'
 gem "paperclip", "~> 4.3"
+gem 'will_paginate-bootstrap'
 
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'

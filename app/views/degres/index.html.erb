@@ -1,8 +1,8 @@
 <p id="notice"><%= notice %></p>
 
-<h1>Listing Degres</h1>
+<h3>Listing Degrees</h3>
 
-<table>
+<table class="table table-striped">
   <thead>
     <tr>
       <th>Name</th>
@@ -16,9 +16,9 @@
       <tr>
         <td><%= degre.name %></td>
         <td><%= degre.drege_type %></td>
-        <td><%= link_to 'Show', degre %></td>
-        <td><%= link_to 'Edit', edit_degre_path(degre) %></td>
-        <td><%= link_to 'Destroy', degre, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <td><%= link_to 'Show', degre, class: "btn btn-primary" %></td>
+        <td><%= link_to 'Edit', edit_degre_path(degre), class: "btn btn-info" %></td>
+        <td><%= link_to 'Destroy', degre, method: :delete, data: { confirm: 'Are you sure?' }, class: "btn btn-danger" %></td>
       </tr>
     <% end %>
   </tbody>

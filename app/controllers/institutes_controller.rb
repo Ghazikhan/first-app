@@ -3,7 +3,7 @@ class InstitutesController < ApplicationController
   before_filter :admin
 
   def index
-    @institutes = Institute.all
+    @institutes = Institute.all.paginate(page: params[:page])
     @user = current_user
   end
 
@@ -61,7 +61,7 @@ class InstitutesController < ApplicationController
     def institute_params
       params.require(:institute).permit(:name, :city_id)
     end
-    
+
     def admin
     	@user = current_user
      unless current_user && User.find_by(email: "ghazi545@gmail.com") == current_user

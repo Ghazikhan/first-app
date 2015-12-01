@@ -5,7 +5,7 @@ class CitiesController < ApplicationController
   # GET /cities
   # GET /cities.json
   def index
-    @cities = City.all
+    @cities = City.all.paginate(page: params[:page]).order(created_at: :asc)
     @user = current_user
   end
 
@@ -75,7 +75,7 @@ class CitiesController < ApplicationController
     def city_params
       params.require(:city).permit(:name)
     end
-    
+
     def admin
     	@user = current_user
      unless current_user && User.find_by(email: "ghazi545@gmail.com") == current_user

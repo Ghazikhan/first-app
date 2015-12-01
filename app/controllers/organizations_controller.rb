@@ -3,7 +3,7 @@ class OrganizationsController < ApplicationController
   before_filter :admin
 
   def index
-    @organizations = Organization.all
+    @organizations = Organization.all.paginate(page: params[:page]).order(created_at: :asc)
     @user = current_user
   end
 
@@ -61,7 +61,7 @@ class OrganizationsController < ApplicationController
     def organization_params
       params.require(:organization).permit(:name)
     end
-    
+
     def admin
     	@user = current_user
      unless current_user && User.find_by(email: "ghazi545@gmail.com") == current_user

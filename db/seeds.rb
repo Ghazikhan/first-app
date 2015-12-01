@@ -6,8 +6,12 @@
 #   cities = City.create([{ name: 'Chicago' }, { name: 'Copenhagen' }])
 #   Mayor.create(name: 'Emanuel', city: cities.first)
 
-open("/home/raza/Desktop/cities.txt").read.each_line do |city|
-  name, code = city.chomp.split(",")
-  City.create!(:name => name)
-end
+# open("/home/murtaza/project/first-app/app/assets/files/cities.txt").read.each_line do |city|
+#   name, code = city.chomp.split(",")
+#   City.create!(:name => name)
+# end
 
+# open("/home/murtaza/project/first-app/app/assets/files/organizations.txt").read.each_line do |organization|
+#   name, code = organization.chomp.split(",")
+#   Organization.create!(:name => name)
+# end

@@ -1,8 +1,8 @@
 <p id="notice"><%= notice %></p>
 
-<h1>Listing Work Fields</h1>
+<h3>Listing Work Fields</h3>
 
-<table>
+<table class="table table-striped">
   <thead>
     <tr>
       <th>Field name</th>
@@ -14,9 +14,9 @@
     <% @work_fields.each do |work_field| %>
       <tr>
         <td><%= work_field.field_name %></td>
-        <td><%= link_to 'Show', work_field %></td>
-        <td><%= link_to 'Edit', edit_work_field_path(work_field) %></td>
-        <td><%= link_to 'Destroy', work_field, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <td><%= link_to 'Show', work_field, class: "btn btn-primary" %></td>
+        <td><%= link_to 'Edit', edit_work_field_path(work_field), class: "btn btn-info" %></td>
+        <td><%= link_to 'Destroy', work_field, method: :delete, data: { confirm: 'Are you sure?' }, class: "btn btn-danger" %></td>
       </tr>
     <% end %>
   </tbody>

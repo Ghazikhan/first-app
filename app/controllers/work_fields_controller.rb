@@ -3,7 +3,7 @@ class WorkFieldsController < ApplicationController
   before_filter :admin
 
   def index
-    @work_fields = WorkField.all
+    @work_fields = WorkField.all.paginate(page: params[:page])
     @user = current_user
   end
 
@@ -61,7 +61,7 @@ class WorkFieldsController < ApplicationController
     def work_field_params
       params.require(:work_field).permit(:field_name)
     end
-    
+
     def admin
     	@user = current_user
      unless current_user && User.find_by(email: "ghazi545@gmail.com") == current_user
