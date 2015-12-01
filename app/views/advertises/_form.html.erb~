@@ -1,21 +1,9 @@
-<%= form_for(@advertise) do |f| %>
-  <% if @advertise.errors.any? %>
-    <div id="error_explanation">
-      <h2><%= pluralize(@advertise.errors.count, "error") %> prohibited this advertise from being saved:</h2>
+<%= form_for(@advertise, html: {multipart: true}) do |f| %>
 
-      <ul>
-      <% @advertise.errors.full_messages.each do |message| %>
-        <li><%= message %></li>
-      <% end %>
-      </ul>
-    </div>
-  <% end %>
+		<%= f.text_field :title, class: "form-control", placeholder: "Advertise Title" %>
+		<%= f.text_area :description, size: "5x5", class: "form-control", placeholder: "Advertise Title" %>
+    <%= f.file_field :image %>
 
-  <div class="field">
-    <%= f.label :picture %><br>
-    <%= f.text_field :picture %>
-  </div>
-  <div class="actions">
     <%= f.submit %>
-  </div>
+
 <% end %>

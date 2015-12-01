@@ -1,8 +1,9 @@
-<%= form_for(@advertise) do |f| %>
+<%= form_for(@advertise, html: {multipart: true}) do |f| %>
 
+		<%= f.text_field :title, class: "form-control", placeholder: "Advertise Title" %>
+		<%= f.text_area :description, size: "5x5", class: "form-control", placeholder: "Advertise Title" %>
+    <%= f.file_field :image %>
 
-    <%= f.text_field :picture %>
-
-    <%= f.submit %>
+    <%= f.submit "Submit", class: "btn btn-primary" %>
 
 <% end %>

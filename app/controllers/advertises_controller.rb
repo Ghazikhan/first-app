@@ -61,7 +61,7 @@ class AdvertisesController < ApplicationController
     end
 
     def advertise_params
-      params.require(:advertise).permit(:picture, :user_id)
+      params.require(:advertise).permit(:picture, :user_id, :title, :description, :image)
     end
     
     def admin

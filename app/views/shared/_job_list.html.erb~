@@ -2,13 +2,10 @@
 <hr>
 <% @advertise.jobs.each do |job| %>
 	<div class="panel panel-default">
-		<!-- Default panel contents -->
 		<div class="panel-heading"><strong>Job Title:</strong> <%= job.work_field.field_name %></div>
 		<div class="panel-body">
 		  <p><%= job.description %></p>
 		</div>
-
-		<!-- List group -->
 		<ul class="list-group">
 		  <li class="list-group-item"><strong>Organization:</strong> <%= job.organization.name %></li>
 		  <li class="list-group-item"><strong>Qualifiction:</strong> <%= job.degre.name_with_type %></li>

@@ -31,10 +31,12 @@
 				<%= avatar3(@user) %>
 			</div>
 		</div>
+		<% if user_signed_in? %>
 			<button class="btn btn-primary" type="button" data-toggle="collapse" 
 							data-target="#addAvatar" aria-expanded="false" aria-controls="collapseExample">
 				Upload Photo
 			</button>
+  	<% end %>
   </div>
 </div>
 			<div class="collapse" id="addAvatar">
@@ -47,6 +49,7 @@
 	<% if @user.educations.exists? %>
 		<%= render 'shared/education' %>
 	<% end %>
+	<% if user_signed_in? %>
 		<button class="btn btn-primary" type="button" data-toggle="collapse" 
 						data-target="#addEducation" aria-expanded="false" aria-controls="collapseExample">
 			Add Education
@@ -57,9 +60,11 @@
 				<%= render 'educations/form' %>
 			</div>
 		</div>
+	<% end %>
 	<% if @user.experiences.exists? %>
 		<%= render 'shared/experience' %>
 	<% end %>
+	<% if user_signed_in? %>
 		<button class="btn btn-primary" type="button" data-toggle="collapse" 
 						data-target="#addExperience" aria-expanded="false" aria-controls="collapseExample">
 			Add Experience
@@ -70,6 +75,7 @@
 				<%= render 'experiences/form' %>
 			</div>
 		</div>
+	<% end %>
 <% else %>
 	<%= render 'userinfos/form' %>
 <% end %>

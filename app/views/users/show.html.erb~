@@ -7,7 +7,7 @@
 <% end %>
 <% if logged_in_admin? %>
 <ol class="breadcrumb">
-  <li><%= link_to 'Advertisment', advetises_path %></li>
+  <li><%= link_to 'Advertisment', advertises_path %></li>
   <li><%= link_to 'City', cities_path %></li>
   <li><%= link_to 'Degree', degres_path %></li>
   <li><%= link_to 'Institute', institutes_path %></li>
@@ -47,6 +47,7 @@
 	<% if @user.educations.exists? %>
 		<%= render 'shared/education' %>
 	<% end %>
+	<% if user_signed_in? %>
 		<button class="btn btn-primary" type="button" data-toggle="collapse" 
 						data-target="#addEducation" aria-expanded="false" aria-controls="collapseExample">
 			Add Education
@@ -57,9 +58,11 @@
 				<%= render 'educations/form' %>
 			</div>
 		</div>
+	<% end %>
 	<% if @user.experiences.exists? %>
 		<%= render 'shared/experience' %>
 	<% end %>
+	<% if user_signed_in? %>
 		<button class="btn btn-primary" type="button" data-toggle="collapse" 
 						data-target="#addExperience" aria-expanded="false" aria-controls="collapseExample">
 			Add Experience
@@ -70,6 +73,7 @@
 				<%= render 'experiences/form' %>
 			</div>
 		</div>
+	<% end %>
 <% else %>
 	<%= render 'userinfos/form' %>
 <% end %>

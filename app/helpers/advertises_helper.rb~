@@ -1,6 +1,4 @@
 module AdvertisesHelper
 
-	def to_param
-		"#{id} #{picture}".parameterize
-	end
+
 end

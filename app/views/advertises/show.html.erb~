@@ -1,11 +1,41 @@
-<p id="notice"><%= notice %></p>
+<br>
+<div class="well well-sm">
+	<h4><%= @advertise.title %></h4>
+</div>
+<%= @advertise.description %>
+<hr>
+<% if user_signed_in? %>
+	<% if @user.userinfos.exists? %>
+		<% if @user.educations.exists? %>
+			<h3>Job Lists</h3><hr>
+			<%= render 'shared/job_list' %>
+			<p>
+				<strong>Download Newspaper Cutting</strong><br>
+				<%= link_to "#{@advertise.title}", @advertise.image.url %>
+			</p>
+		<% else %>
+			<div class="alert alert-info" role="alert">
+				Add your minimum one educationial detail. 
+				<%= link_to 'Click here', current_user, class: "alert-link" %>
+				to add qualification.
+			</div>
+		<% end %>
+	<% else %>
+		<div class="alert alert-info" role="alert">
+			First of all update your profile. 
+			<%= link_to 'Click here', current_user, class: "alert-link" %>
+			to update.
+		</div>
+	<% end %>
+<% else %>
+		<div class="alert alert-info" role="alert">
+			To view Job Lists please
+			<%= link_to 'Sign Up', new_user_registration_path, class: "alert-link" %> or 
+			<%= link_to 'Log In', new_user_session_path, class: "alert-link" %> to your account
+		</div>
+<% end %>
 
-<%= render 'shared/job_list' %>
-<p>
-  <strong>Download Newspaper Cutting</strong><br>
-  <%= @advertise.picture %>
-</p>
-<% if  %>
+<% if logged_in_admin? %>
 <button class="btn btn-primary" type="button" data-toggle="collapse" 
 				data-target="#addEducation" aria-expanded="false" aria-controls="collapseExample">
 	Add Jobs
