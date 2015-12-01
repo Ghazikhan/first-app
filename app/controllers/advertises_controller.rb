@@ -23,8 +23,12 @@ class AdvertisesController < ApplicationController
   def create
     @advertise = Advertise.new(advertise_params)
 
+    @user = User.find_by_id(params[:user])
     respond_to do |format|
       if @advertise.save
+        User.all.each do |user|
+          AdvertiseMailer.adveritse_mail_sending(@advertise, user).deliver!
+        end
         format.html { redirect_to @advertise, notice: 'Advertise was successfully created.' }
         format.json { render :show, status: :created, location: @advertise }
       else
@@ -63,7 +67,7 @@ class AdvertisesController < ApplicationController
     def advertise_params
       params.require(:advertise).permit(:picture, :user_id, :title, :description, :image)
     end
-    
+
     def admin
     	@user = current_user
      unless current_user && User.find_by(email: "ghazi545@gmail.com") == current_user
