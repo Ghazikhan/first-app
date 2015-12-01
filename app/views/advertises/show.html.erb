@@ -3,25 +3,33 @@
 	<h4><%= @advertise.title %></h4>
 </div>
 <%= @advertise.description %>
-<hr><h3>Job Lists</h3><hr>
+<hr><h3>Job Listing</h3><hr>
+
+
 <% if user_signed_in? %>
 	<% if @user.userinfos.exists? %>
 		<% if @user.educations.exists? %>
-			<%= render 'shared/job_list' %>
-			<p>
-				<strong>Download Newspaper Cutting</strong><br>
-				<%= link_to "#{@advertise.title}", @advertise.image.url %>
-			</p>
+			<% if @advertise.jobs.exists? %>
+				<%= render 'shared/job_list' %>
+				<div class="alert alert-info" role="alert">
+					To download complete newspaper advertisment click download button below<br><br>
+					<%= link_to "Download", @advertise.image.url, class: "btn btn-success" %>
+				</div>
+			<% else %>
+				<div class="alert alert-info" role="alert">
+					Job listing are being creating please refresh page after 20 minutes
+				</div>
+			<% end %>
 		<% else %>
 			<div class="alert alert-info" role="alert">
-				Add your minimum one educationial detail. 
+				Add your minimum one educationial detail.
 				<%= link_to 'Click here', current_user, class: "alert-link" %>
 				to add qualification.
 			</div>
 		<% end %>
 	<% else %>
 		<div class="alert alert-info" role="alert">
-			First of all update your profile. 
+			First of all update your profile.
 			<%= link_to 'Click here', current_user, class: "alert-link" %>
 			to update.
 		</div>
@@ -29,13 +37,13 @@
 <% else %>
 		<div class="alert alert-info" role="alert">
 			To view Job Lists please
-			<%= link_to 'Sign Up', new_user_registration_path, class: "alert-link" %> or 
+			<%= link_to 'Sign Up', new_user_registration_path, class: "alert-link" %> or
 			<%= link_to 'Log In', new_user_session_path, class: "alert-link" %> to your account
 		</div>
 <% end %>
 
 <% if logged_in_admin? %>
-<button class="btn btn-primary" type="button" data-toggle="collapse" 
+<button class="btn btn-primary" type="button" data-toggle="collapse"
 				data-target="#addEducation" aria-expanded="false" aria-controls="collapseExample">
 	Add Jobs
 </button>
