@@ -5,18 +5,8 @@
 <% if notice %>
 	<p class="alert alert-success"><%= notice %></p> 
 <% end %>
-<% if logged_in_admin? %>
-<ol class="breadcrumb">
-  <li><%= link_to 'Advertisment', advertises_path %></li>
-  <li><%= link_to 'City', cities_path %></li>
-  <li><%= link_to 'Degree', degres_path %></li>
-  <li><%= link_to 'Institute', institutes_path %></li>
-  <li><%= link_to 'Organization', organizations_path %></li>
-  <li><%= link_to 'Work Field', work_fields_path %></li>
-</ol>
-<% end %>
 <div class="row">
-  <div class="col-md-8">
+  <div class="col-md-4">
 		<div class="panel panel-default">
 			<div class="panel-body">
 				<p><strong>Name:</strong> <%= @user.first_name %> <%= @user.last_name %></p>
@@ -25,17 +15,19 @@
 			</div>
 		</div>
   </div>
-  <div class="col-md-4">
+
 		<div class="panel panel-default">
 			<div class="panel-body">
 				<%= avatar3(@user) %>
 			</div>
 		</div>
+		<% if user_signed_in? %>
 			<button class="btn btn-primary" type="button" data-toggle="collapse" 
 							data-target="#addAvatar" aria-expanded="false" aria-controls="collapseExample">
 				Upload Photo
 			</button>
-  </div>
+  	<% end %>
+
 </div>
 			<div class="collapse" id="addAvatar">
 				<div class="well">

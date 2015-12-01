@@ -1,9 +1,14 @@
-<h2>Left Sidebar</h2>
-<p>
-The most useful web for the jobless indivudals,
-through this web every one can apply for suitable post, we provide apportunity
-for bright future, search your desire post which announced by the government/
-none Govt organizations. You may also find here rights for your articles/
-comments/categories. We post for you most newest news,jobs, social activities,
-ideas and career advantage. Our team care for you respect for your ideas and we
-also awaiting for your kind suggestions/feedback.</p>
+<br>
+<% if user_signed_in? %>
+	<div class="list-group">
+		<span class="list-group-item active">
+			<h4><b>Categories</b></h4>
+			<% Degre.all.each do |degree| %>
+		</span>
+		<span class="list-group-item">
+				<%= link_to degree.name_with_type, degree %>
+				<%= link_to "45", degree, class: "badge" %>
+		</span>
+			<% end %>
+	</div>
+<% end %>
