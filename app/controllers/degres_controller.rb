@@ -61,7 +61,7 @@ class DegresController < ApplicationController
     def degre_params
       params.require(:degre).permit(:name, :drege_type)
     end
-    
+
     def admin
     	@user = current_user
      unless current_user && User.find_by(email: "ghazi545@gmail.com") == current_user

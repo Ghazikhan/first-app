@@ -1,10 +1,4 @@
 <br>
-<% if alert %>
-	<p class="alert alert-danger"><%= alert %></p>
-<% end %>
-<% if notice %>
-	<p class="alert alert-success"><%= notice %></p> 
-<% end %>
 <div class="row">
   <div class="col-md-8">
 		<div class="panel panel-default">
@@ -22,7 +16,7 @@
 			</div>
 		</div>
 		<% if user_signed_in? %>
-			<button class="btn btn-primary" type="button" data-toggle="collapse" 
+			<button class="btn btn-primary" type="button" data-toggle="collapse"
 							data-target="#addAvatar" aria-expanded="false" aria-controls="collapseExample">
 				Upload Photo
 			</button>
@@ -40,7 +34,7 @@
 		<%= render 'shared/education' %>
 	<% end %>
 	<% if user_signed_in? %>
-		<button class="btn btn-primary" type="button" data-toggle="collapse" 
+		<button class="btn btn-primary" type="button" data-toggle="collapse"
 						data-target="#addEducation" aria-expanded="false" aria-controls="collapseExample">
 			Add Education
 		</button>
@@ -55,7 +49,7 @@
 		<%= render 'shared/experience' %>
 	<% end %>
 	<% if user_signed_in? %>
-		<button class="btn btn-primary" type="button" data-toggle="collapse" 
+		<button class="btn btn-primary" type="button" data-toggle="collapse"
 						data-target="#addExperience" aria-expanded="false" aria-controls="collapseExample">
 			Add Experience
 		</button>
