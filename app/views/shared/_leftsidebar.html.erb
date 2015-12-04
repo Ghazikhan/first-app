@@ -6,8 +6,8 @@
 			<% Degre.all.each do |degree| %>
 		</span>
 		<span class="list-group-item">
-				<%= link_to degree.name_with_type, degree %>
-				<%= link_to "0", degree, class: "badge" %>
+			<span class="badge"><%= link_to "04", degree, class: "badge" %></span>
+			<%= link_to degree.name_with_type, degree %>
 		</span>
 			<% end %>
 	</div>

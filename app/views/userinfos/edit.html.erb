@@ -2,8 +2,8 @@
 <div class="row">
   <div class="col-md-8">
     <div class="panel panel-default">
+      <h2 class="alert alert-info"><%= @user.first_name %> <%= @user.last_name %></h2>
       <div class="panel-body">
-        <p><strong>Name:</strong> <%= @user.first_name %> <%= @user.last_name %></p>
         <p><strong>Email:</strong>  <%= mail_to @user.email %></p>
         <% if @user.userinfos.exists? %>
           <%= render 'shared/userinfo' %>
@@ -11,12 +11,10 @@
       </div>
     </div>
   </div>
-  <div class="col-md-4">
-    <div class="panel panel-default">
-      <div class="panel-body">
-        <%= avatar3(@user) %>
-      </div>
-    </div>
+  <div class="col-xs-6 col-md-3">
+    <span class="thumbnail">
+      <%= avatar3(@user) %>
+    </span>
     <% if user_signed_in? %>
       <button class="btn btn-primary" type="button" data-toggle="collapse"
               data-target="#addAvatar" aria-expanded="false" aria-controls="collapseExample">
@@ -31,39 +29,7 @@
   </div>
 </div>
 <div class="well">
-<%= form_for([current_user, @userinfo]) do |f| %>
-  <%= render 'shared/error_messages', object: f.object %>
-
-  <div class="row">
-  <div class="col-md-8">
-    <%= f.label :date_of_birth, "Date of Birth" %><br>
-    <%= f.date_select(:date_of_birth, start_year: 1970, order: [:day, :month, :year],
-                                      prompt: { day: 'Day', month: 'Month', year: 'Year' }) %>
-  </div>
-  </div>
-
- <div class="row">
-  <div class="col-md-1">
-      <%= f.radio_button :gender, "Male" %>
-   </div>
-   <%= f.label :gender, "Male" %>
- </div>
- <div class="row">
-   <div class="col-md-1">
-      <%= f.radio_button :gender, "Female" %>
-   </div>
-    <%= f.label :gender, "Female" %>
- </div>
- <div class="row">
-   <div class="col-md-4">
-      <%= f.text_field :mobile, class: "form-control", placeholder: "Phone" %>
-    </div>
-  </div>
-    <%= f.text_area :address, class: "form-control", placeholder: "Address" %>
-
-    <%= f.submit "Update Profile", class: "btn btn-primary" %>
-
-<% end %>
+  <%= render 'userinfos/form2' %>
 </div>
 
 <% if @user.userinfos.exists? %>
@@ -98,5 +64,8 @@
     </div>
   <% end %>
 <% else %>
-  <%= render 'userinfos/form' %>
+  <p class="alert alert-warning">Update your profile for futher steps you want to do.</p>
+  <div class="well">
+    <%= render 'userinfos/form' %>
+  </div>
 <% end %>

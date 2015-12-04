@@ -1,9 +1,0 @@
-class Degre < ActiveRecord::Base
-	has_many :educations
-	has_many :jobs
-	has_many :advertise, through: :jobs
-	
-  def name_with_type
-   "#{name} #{drege_type}"
-  end
-end

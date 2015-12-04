@@ -9,20 +9,7 @@
 <body>
 
 <%= render 'shared/header' %>
-<div class="row">
-	<div class="col-md-6 col-md-offset-3">
-		<% if logged_in_admin? %>
-		<ol class="breadcrumb">
-			<li><%= link_to 'Advertisment', advertises_path %></li>
-			<li><%= link_to 'City', cities_path %></li>
-			<li><%= link_to 'Degree', degres_path %></li>
-			<li><%= link_to 'Institute', institutes_path %></li>
-			<li><%= link_to 'Organization', organizations_path %></li>
-			<li><%= link_to 'Work Field', work_fields_path %></li>
-		</ol>
-		<% end %>
-	</div>
-</div>
+<%= render 'shared/admin_penal' %>
 
 <div class="row">
 	<div class="col-md-3">
@@ -30,14 +17,14 @@
 			<%= render 'shared/leftsidebar' %>
 		</section>
 	</div>
-	<div class="col-md-6">
-	<%= render 'shared/messages' %>
-	<%= yield %>
+	<div class="container">
+		<div class="col-md-8">
+			<%= render 'shared/messages' %>
+			<%= yield %>
+		</div>
 	</div>
-	<div class="col-md-3">
-		<section class="rightbar">
-			<%= render 'shared/rightsidebar' %>
-		</section>
+	<div class="col-md-3 offset-right">
+
 	</div>
 </div>
 

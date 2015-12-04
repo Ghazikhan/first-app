@@ -2,7 +2,7 @@
 <div class="row">
   <div class="col-md-8">
 		<div class="panel panel-default">
-				<h2 class="alert alert-info"><%= @user.first_name %> <%= @user.last_name %></h2>
+			<h2 class="alert alert-info"><%= @user.first_name %> <%= @user.last_name %></h2>
 			<div class="panel-body">
 				<p><strong>Email:</strong>	<%= mail_to @user.email %></p>
 				<% if @user.userinfos.exists? %>
@@ -11,12 +11,10 @@
 			</div>
 		</div>
   </div>
-  <div class="col-md-4">
-		<div class="panel panel-default">
-			<div class="panel-body">
-				<%= avatar3(@user) %>
-			</div>
-		</div>
+  <div class="col-xs-6 col-md-3">
+		<span class="thumbnail">
+		  <%= avatar3(@user) %>
+		</span>
 		<% if user_signed_in? %>
 			<button class="btn btn-primary" type="button" data-toggle="collapse"
 							data-target="#addAvatar" aria-expanded="false" aria-controls="collapseExample">
@@ -69,4 +67,3 @@
 		<%= render 'userinfos/form' %>
 	</div>
 <% end %>
-
