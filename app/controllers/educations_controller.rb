@@ -13,13 +13,14 @@ class EducationsController < ApplicationController
   end
 
   def edit
+    @user = current_user
   end
 
   def create
   	@user = User.find(params[:user_id])
     @education = @user.educations.create(education_params)
       if @education.save
-        redirect_to @user, notice: 'Education was successfully created.'
+        redirect_to @user, notice: 'Education was successfully added.'
       else
       	flash[:alert] = "Please fill complete form below..!"
         redirect_to @user
@@ -27,27 +28,18 @@ class EducationsController < ApplicationController
   end
 
   def update
-    respond_to do |format|
-      if @education.update(education_params)
-        format.html { redirect_to @education, notice: 'Education was successfully updated.' }
-        format.json { render :show, status: :ok, location: @education }
-      else
-        format.html { render :edit }
-        format.json { render json: @education.errors, status: :unprocessable_entity }
-      end
-    end
-  end
-
-  def destroy
-    @education.destroy
-    respond_to do |format|
-      format.html { redirect_to educations_url, notice: 'Education was successfully destroyed.' }
-      format.json { head :no_content }
+    @user = User.find(params[:user_id])
+    @education = @user.educations.find(params[:id])
+    if @education.update(education_params)
+      redirect_to @user, notice: 'Education was successfully updated.'
+    else
+      flash[:alert] = "Please fill complete form below..!"
+      redirect_to @user
     end
   end
 
   private
-  
+
     def set_education
       @education = Education.find(params[:id])
     end

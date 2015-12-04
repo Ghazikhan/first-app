@@ -17,6 +17,8 @@
         <td><%= experience.work_field.field_name %></td>
         <td><%= experience.start_date.strftime("%d-%m-%Y") %></td>
         <td><%= experience.end_date.strftime("%d-%m-%Y") %></td>
+        <td><%= link_to "", edit_user_experience_path(current_user, experience),
+                                                class: "glyphicon glyphicon-pencil" %></td>
       </tr>
     <% end %>
   </tbody>
