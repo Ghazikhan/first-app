@@ -2,8 +2,8 @@
 <div class="row">
   <div class="col-md-8">
 		<div class="panel panel-default">
+				<h2 class="alert alert-info"><%= @user.first_name %> <%= @user.last_name %></h2>
 			<div class="panel-body">
-				<p><strong>Name:</strong> <%= @user.first_name %> <%= @user.last_name %></p>
 				<p><strong>Email:</strong>	<%= mail_to @user.email %></p>
 				<% if @user.userinfos.exists? %>
 					<%= render 'shared/userinfo' %>
