@@ -10,18 +10,17 @@
    </div>
    </div>
    <div class="row">
-    <%= f.date_select(:pass_year, start_year: 1985, discard_day: true, discard_month: true, 
+    <%= f.date_select(:pass_year, start_year: 1985, discard_day: true, discard_month: true,
     																								prompt: "Select Year") %>
    <div class="col-md-4">
-    <%= f.collection_select(:degre_id, Degre.all, :id, :name_with_type, 
+    <%= f.collection_select(:degre_id, Degre.all, :id, :name_with_type,
     												{prompt: "Select a Deree"}, class: "form-control") %>
     </div>
     <div class="col-md-4">
-    <%= f.collection_select(:institute_id, Institute.all, :id, :name_with_city, 
+    <%= f.collection_select(:institute_id, Institute.all, :id, :name_with_city,
     												{prompt: "Select a Institute"}, class: "form-control") %>
 		</div>
 		</div>
     <%= f.submit "Submit", class: "btn btn-primary" %>
 
 <% end %>
-<hr>

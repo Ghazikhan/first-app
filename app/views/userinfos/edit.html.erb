@@ -1,6 +1,102 @@
-<h1>Editing Userinfo</h1>
+<br>
+<div class="row">
+  <div class="col-md-8">
+    <div class="panel panel-default">
+      <div class="panel-body">
+        <p><strong>Name:</strong> <%= @user.first_name %> <%= @user.last_name %></p>
+        <p><strong>Email:</strong>  <%= mail_to @user.email %></p>
+        <% if @user.userinfos.exists? %>
+          <%= render 'shared/userinfo' %>
+        <% end %>
+      </div>
+    </div>
+  </div>
+  <div class="col-md-4">
+    <div class="panel panel-default">
+      <div class="panel-body">
+        <%= avatar3(@user) %>
+      </div>
+    </div>
+    <% if user_signed_in? %>
+      <button class="btn btn-primary" type="button" data-toggle="collapse"
+              data-target="#addAvatar" aria-expanded="false" aria-controls="collapseExample">
+        Upload Photo
+      </button>
+    <% end %>
+  </div>
+</div>
+<div class="collapse" id="addAvatar">
+  <div class="well">
+    <%= render 'devise/registrations/edit' %>
+  </div>
+</div>
+<div class="well">
+<%= form_for([current_user, @userinfo]) do |f| %>
+  <%= render 'shared/error_messages', object: f.object %>
 
-<%= render 'form' %>
+  <div class="row">
+  <div class="col-md-8">
+    <%= f.label :date_of_birth, "Date of Birth" %><br>
+    <%= f.date_select(:date_of_birth, start_year: 1970, order: [:day, :month, :year],
+                                      prompt: { day: 'Day', month: 'Month', year: 'Year' }) %>
+  </div>
+  </div>
 
-<%= link_to 'Show', @userinfo %> |
-<%= link_to 'Back', userinfos_path %>
+ <div class="row">
+  <div class="col-md-1">
+      <%= f.radio_button :gender, "Male" %>
+   </div>
+   <%= f.label :gender, "Male" %>
+ </div>
+ <div class="row">
+   <div class="col-md-1">
+      <%= f.radio_button :gender, "Female" %>
+   </div>
+    <%= f.label :gender, "Female" %>
+ </div>
+ <div class="row">
+   <div class="col-md-4">
+      <%= f.text_field :mobile, class: "form-control", placeholder: "Phone" %>
+    </div>
+  </div>
+    <%= f.text_area :address, class: "form-control", placeholder: "Address" %>
+
+    <%= f.submit "Update Profile", class: "btn btn-primary" %>
+
+<% end %>
+</div>
+
+<% if @user.userinfos.exists? %>
+  <% if @user.educations.exists? %>
+    <%= render 'shared/education' %>
+  <% end %>
+  <% if user_signed_in? %>
+    <button class="btn btn-default" type="button" data-toggle="collapse"
+            data-target="#addEducation" aria-expanded="false" aria-controls="collapseExample">
+      Add Education
+    </button>
+    <br><br>
+    <div class="collapse" id="addEducation">
+      <div class="well">
+        <%= render 'educations/form' %>
+      </div>
+    </div>
+  <% end %>
+  <% if @user.experiences.exists? %>
+    <%= render 'shared/experience' %>
+  <% end %>
+  <% if user_signed_in? %>
+    <button class="btn btn-default" type="button" data-toggle="collapse"
+            data-target="#addExperience" aria-expanded="false" aria-controls="collapseExample">
+      Add Experience
+    </button>
+    <br><br>
+    <div class="collapse" id="addExperience">
+      <div class="well">
+        <%= render 'experiences/form' %>
+      </div>
+    </div>
+  <% end %>
+<% else %>
+  <%= render 'userinfos/form' %>
+<% end %>

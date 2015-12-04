@@ -5,7 +5,9 @@
 			<div class="panel-body">
 				<p><strong>Name:</strong> <%= @user.first_name %> <%= @user.last_name %></p>
 				<p><strong>Email:</strong>	<%= mail_to @user.email %></p>
+				<% if @user.userinfos.exists? %>
 					<%= render 'shared/userinfo' %>
+				<% end %>
 			</div>
 		</div>
   </div>
@@ -23,18 +25,18 @@
   	<% end %>
   </div>
 </div>
-			<div class="collapse" id="addAvatar">
-				<div class="well">
-					<%= render 'devise/registrations/edit' %>
-				</div>
-			</div>
-<% if @user.userinfos.exists? %>
+<div class="collapse" id="addAvatar">
+	<div class="well">
+		<%= render 'devise/registrations/edit' %>
+	</div>
+</div>
 
+<% if @user.userinfos.exists? %>
 	<% if @user.educations.exists? %>
 		<%= render 'shared/education' %>
 	<% end %>
 	<% if user_signed_in? %>
-		<button class="btn btn-primary" type="button" data-toggle="collapse"
+		<button class="btn btn-default" type="button" data-toggle="collapse"
 						data-target="#addEducation" aria-expanded="false" aria-controls="collapseExample">
 			Add Education
 		</button>
@@ -49,7 +51,7 @@
 		<%= render 'shared/experience' %>
 	<% end %>
 	<% if user_signed_in? %>
-		<button class="btn btn-primary" type="button" data-toggle="collapse"
+		<button class="btn btn-default" type="button" data-toggle="collapse"
 						data-target="#addExperience" aria-expanded="false" aria-controls="collapseExample">
 			Add Experience
 		</button>
@@ -61,6 +63,10 @@
 		</div>
 	<% end %>
 <% else %>
-	<%= render 'userinfos/form' %>
+<br>
+	<p class="alert alert-warning">Update your profile for futher steps you want to do.</p>
+	<div class="well">
+		<%= render 'userinfos/form' %>
+	</div>
 <% end %>
 

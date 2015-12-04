@@ -18,5 +18,8 @@
 		<strong>Address:</strong>
 		<%= info.address %>
 	</p>
-	
+
+<br>
+<%= link_to 'Edit Profile', edit_user_userinfo_path(@user, info),
+																															class: "btn btn-success" %>
 <% end %>

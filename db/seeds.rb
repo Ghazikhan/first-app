@@ -15,3 +15,9 @@
 #   name, code = organization.chomp.split(",")
 #   Organization.create!(:name => name)
 # end
+
+open("/home/murtaza/Desktop/asdf.csv").read.each_line do |institute|
+  name, code = institute.chomp.split(",")
+  Institute.create!(:name => name,
+                       :city_id => city_id)
+end

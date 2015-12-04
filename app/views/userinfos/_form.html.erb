@@ -1,15 +1,11 @@
-<hr>
-<h2>Update Profile</h2>
-<p class="alert alert-warning">
-Note..! Fill these field very carefully. After submit will not be editable.
-</p> 
+
 <%= form_for([@user, @user.userinfos.build]) do |f| %>
   <%= render 'shared/error_messages', object: f.object %>
 
   <div class="row">
   <div class="col-md-8">
   	<%= f.label :date_of_birth, "Date of Birth" %><br>
-    <%= f.date_select(:date_of_birth, start_year: 1970, order: [:day, :month, :year], 
+    <%= f.date_select(:date_of_birth, start_year: 1970, order: [:day, :month, :year],
     																	prompt: { day: 'Day', month: 'Month', year: 'Year' }) %>
   </div>
   </div>
